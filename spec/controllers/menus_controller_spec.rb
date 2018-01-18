@@ -9,6 +9,13 @@ RSpec.describe MenusController, type: :controller do
       response.should have_http_status(:ok)
     end
   end
+  
+  describe 'GET #new' do
+    it 'should assign a new menu' do
+      get :new
+      expect(assigns(:menu)).to be_a_new(Menu)
+    end
+  end
 
   context 'GET #show' do
     context 'positive test' do

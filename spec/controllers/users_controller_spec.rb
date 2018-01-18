@@ -9,6 +9,13 @@ RSpec.describe UsersController, type: :controller do
       response.should have_http_status(:ok)
     end
   end
+  
+  describe 'GET #new' do
+    it 'should assign a new user' do
+      get :new
+      expect(assigns(:user)).to be_a_new(User)
+    end
+  end
 
   context 'GET #show' do
     context 'positive test' do

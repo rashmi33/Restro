@@ -8,6 +8,13 @@ RSpec.describe RestaurantsController, type: :controller do
       response.should have_http_status(:ok)
     end
   end
+  
+  describe 'GET #new' do
+    it 'should assign a new restaurant' do
+      get :new
+      expect(assigns(:restaurant)).to be_a_new(Restaurant)
+    end
+  end
 
   context 'GET #show' do
     context 'positive test' do

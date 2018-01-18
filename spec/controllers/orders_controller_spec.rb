@@ -10,6 +10,13 @@ RSpec.describe OrdersController, type: :controller do
       response.should have_http_status(:ok)
     end
   end
+  
+  describe 'GET #new' do
+    it 'should assign a new order' do
+      get :new
+      expect(assigns(:order)).to be_a_new(Order)
+    end
+  end
 
   context 'GET #show' do
     context 'positive test' do

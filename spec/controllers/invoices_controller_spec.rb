@@ -10,6 +10,13 @@ RSpec.describe InvoicesController, type: :controller do
     end
   end
 
+  describe 'GET #new' do
+    it 'should assign a new invoice' do
+      get :new
+      expect(assigns(:invoice)).to be_a_new(Invoice)
+    end
+  end
+  
   context 'GET #show' do
     context 'positive test' do
       it 'should show invoice with given id' do
