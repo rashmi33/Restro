@@ -1,0 +1,23 @@
+<center>
+  <h1>Listing Menus</h1>
+  <br><br>
+  <table cellpadding="10">
+    <tr>
+      <th>Menu_Type</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th colspan="4"></th>
+    </tr>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td><%= menu.menu_type %></td>
+        <td><%= menu.name %></td>
+        <td><%= menu.price %></td>
+        <td><%= link_to 'Show', menu_path(menu) %></td>
+        <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
+        <td><%= link_to 'Delete', menu_path(menu), :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to 'Back To Restaurants', restaurants_path %>
+</center>

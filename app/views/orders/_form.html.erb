@@ -1,0 +1,13 @@
+<%= form_for [@order], local: true do |form| %>
+  <p>
+    <%= form.label :Code %><br>
+    <%= form.text_field :code %>
+  </p>
+  <p>
+    <%= form.label :Food_Details_With_Quantity %><br>
+    <%= form.text_field :food_details_with_quantity %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

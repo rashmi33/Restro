@@ -1,0 +1,14 @@
+<%= form_for [@invoice], local: true do |form| %>
+  <p>
+    <%= form.label :Code %><br>
+    <%= form.text_field :code %>
+  </p>
+  <p>
+    <%= form.label :Amount %><br>
+    <%= form.text_field :amount %>
+  </p>
+  <%= hidden_field_tag(:order_id, params[:order_id]) %> 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

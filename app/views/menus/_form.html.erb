@@ -1,0 +1,18 @@
+<%= form_for [@restaurant, @menu], local: true do |form| %>
+  <p>
+    <%= form.label :Menu_Type %><br>
+    <%= form.text_field :menu_type %>
+  </p>
+  <p>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :Price %><br>
+    <%= form.text_field :price %>
+  </p>
+  <%= hidden_field_tag(:restaurant_id, params[:restaurant_id]) %> 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

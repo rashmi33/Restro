@@ -1,0 +1,22 @@
+<center>
+  <h1>Listing Orders</h1><br>
+  Click to <td><%= link_to 'Add Orders', new_order_path%></td><br>
+  <table cellpadding="10">
+    <tr>
+      <th>Code</th>
+      <th>Food_Details_With_Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.code %></td>
+        <td><%= order.food_details_with_quantity %></td>
+        <td><%= link_to 'Show', order_path(order) %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Delete', order_path(order), :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Add Invoice', new_invoice_path(:order_id => order.id)%></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to 'Back To Restaurants', restaurants_path %>
+</center>

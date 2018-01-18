@@ -1,0 +1,34 @@
+<center>
+  <h1>Listing Restaurants</h1>
+   Click to create <%= link_to 'New Restaurant', new_restaurant_path %><br><br>
+   Click to <%= link_to 'Display Orders', orders_path %>
+  <br><br>
+  <table cellpadding="10">
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Phone No</th>
+      <th>Rating</th>
+      <th>Is Vegan?</th>
+      <th>Has Bar?</th>
+      <th colspan="8"></th>
+    </tr>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.address %></td>
+        <td><%= restaurant.city %></td>
+        <td><%= restaurant.phone_no %></td>
+        <td><%= restaurant.rating %></td>
+        <td><%= restaurant.is_veg %></td>
+        <td><%= restaurant.has_bar %></td>
+        <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Delete', restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+        <td><%= link_to 'Add Menu', new_menu_path(:restaurant_id => restaurant.id)%></td>
+        <td><%= link_to 'Add User', new_user_path(:restaurant_id => restaurant.id)%></td>
+      </tr>
+    <% end %>
+  </table>
+</center>

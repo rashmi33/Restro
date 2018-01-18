@@ -1,0 +1,22 @@
+<center>
+  <h1>Listing Users</h1>
+  <table cellpadding="10">
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone No</th>
+      <th colspan="4"></th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.address %></td>
+        <td><%= user.phone_no %></td>
+        <td><%= link_to 'Show', user_path(user) %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Delete', user_path(user), :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to 'Back To Restaurants', restaurants_path %>
+</center>
