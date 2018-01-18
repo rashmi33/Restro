@@ -7,6 +7,10 @@ class UsersController < ApplicationController
       format.html
     end
   end
+  
+  def new
+    @user = User.new
+  end 
 
   def show
     begin

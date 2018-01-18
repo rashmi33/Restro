@@ -7,6 +7,10 @@ class OrdersController < ApplicationController
       format.html
     end
   end
+  
+  def new
+    @order = Order.new
+  end 
 
   def show
     begin

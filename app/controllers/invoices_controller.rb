@@ -8,6 +8,10 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def new
+    @invoice = Invoice.new
+  end 
+  
   def show
     begin
       @invoice = Invoice.find(params[:id])

@@ -7,6 +7,10 @@ class MenusController < ApplicationController
       format.html
     end
   end
+  
+  def new
+    @menu = Menu.new
+  end
 
   def show
     begin

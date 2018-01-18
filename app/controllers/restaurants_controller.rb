@@ -7,6 +7,10 @@ class RestaurantsController < ApplicationController
       format.html
     end
   end
+  
+  def new
+    @restaurant = Restaurant.new
+  end 
 
   def show
     begin
