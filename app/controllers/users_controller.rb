@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     respond_to do |format|
-      format.json { render :json => { :users => @users }, status: :ok }
+      format.json { render json: { users: @users }, status: :ok }
       format.html
     end
   end
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     begin
       @user = User.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :user => @user }, status: :ok }
+        format.json { render json: { user: @user }, status: :ok }
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     begin
       @user = User.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :user => @user }, status: :ok }
+        format.json { render json: { user: @user }, status: :ok }
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -40,12 +40,12 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
     if @user.save
       respond_to do |format|
-        format.json { render :json => { :user => @user }, status: :ok }
+        format.json { render json: { user: @user }, status: :ok }
         format.html { redirect_to users_path }
       end
     else
       respond_to do |format|
-        format.json { render :json => { :user => @user.errors }, status: :unprocessable_entity }
+        format.json { render json: { user: @user.errors }, status: :unprocessable_entity }
         format.html { redirect_to new_user_path }
       end
     end
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
         redirect_to @user
       else
         respond_to do |format|
-          format.json { render :json => { :user => @user.errors }, status: :unprocessable_entity }
+          format.json { render json: { user: @user.errors }, status: :unprocessable_entity }
           format.html { redirect_to edit_user_path }
         end
       end
@@ -72,12 +72,12 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       if @user.destroy
         respond_to do |format|
-          format.json { render :json => { :message => 'User was deleted successfully' }, status: :ok }
+          format.json { render json: { message: 'User was deleted successfully' }, status: :ok }
           format.html { redirect_to users_path }
         end
       else
         respond_to do |format|
-          format.json { render :json => { :user => @user.errors }, status: :unprocessable_entity }
+          format.json { render json: { user: @user.errors }, status: :unprocessable_entity }
           format.html
         end
       end

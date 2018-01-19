@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all
     respond_to do |format|
-      format.json { render :json => { :restaurants => @restaurants }, status: :ok }
+      format.json { render json: { restaurants: @restaurants }, status: :ok }
       format.html
     end
   end
@@ -16,7 +16,7 @@ class RestaurantsController < ApplicationController
     begin
       @restaurant = Restaurant.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :restaurant => @restaurant }, status: :ok } 
+        format.json { render json: { restaurant: @restaurant }, status: :ok } 
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -28,7 +28,7 @@ class RestaurantsController < ApplicationController
     begin
       @restaurant = Restaurant.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :restaurant => @restaurant }, status: :ok }
+        format.json { render json: { restaurant: @restaurant }, status: :ok }
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -40,12 +40,12 @@ class RestaurantsController < ApplicationController
   	@restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       respond_to do |format|
-        format.json { render :json => { :restaurant => @restaurant }, status: :ok }
+        format.json { render json: { restaurant: @restaurant }, status: :ok }
         format.html { redirect_to restaurants_path }
       end
     else
       respond_to do |format|
-        format.json { render :json => { :restaurant => @restaurant.errors }, status: :unprocessable_entity }
+        format.json { render json: { restaurant: @restaurant.errors }, status: :unprocessable_entity }
         format.html { redirect_to new_restaurant_path }
       end
     end
@@ -58,7 +58,7 @@ class RestaurantsController < ApplicationController
         redirect_to @restaurant
       else
         respond_to do |format|
-          format.json { render :json => { :restaurant => @restaurant.errors }, status: :unprocessable_entity }
+          format.json { render json: { restaurant: @restaurant.errors }, status: :unprocessable_entity }
           format.html { redirect_to edit_restaurant_path }
         end
       end
@@ -72,12 +72,12 @@ class RestaurantsController < ApplicationController
       @restaurant = Restaurant.find(params[:id])
       if @restaurant.destroy
         respond_to do |format|
-          format.json { render :json => { :message => 'Restaurant was deleted successfully' }, status: :ok }
+          format.json { render json: { message: 'Restaurant was deleted successfully' }, status: :ok }
           format.html { redirect_to restaurants_path }
         end
       else
         respond_to do |format|
-          format.json { render :json => { :restaurant => @restaurant.errors }, status: :unprocessable_entity }
+          format.json { render json: { restaurant: @restaurant.errors }, status: :unprocessable_entity }
           format.html
         end
       end

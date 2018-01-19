@@ -34,7 +34,7 @@ RSpec.describe Invoice, type: :model do
   end
 
   context 'associations' do
-  	it 'should belong to order'do
+  	it 'should belong to order' do
       order = FactoryGirl.create(:order)
       invoice = FactoryGirl.create(:invoice, order_id: order.id)
       invoice.order.id.should eq order.id

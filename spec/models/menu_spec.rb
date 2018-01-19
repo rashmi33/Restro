@@ -37,7 +37,7 @@ RSpec.describe Menu, type: :model do
       menu.orders.includes(order)
     end
 
-    it 'should belong to restaurant'do
+    it 'should belong to restaurant' do
       restaurant = FactoryGirl.create(:restaurant)
       menu = FactoryGirl.create(:menu, restaurant_id: restaurant.id)
       menu.restaurant.id.should eq restaurant.id

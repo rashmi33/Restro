@@ -3,7 +3,7 @@ class InvoicesController < ApplicationController
   def index
     @invoices = Invoice.all
     respond_to do |format|
-      format.json { render :json => { :invoices => @invoices }, status: :ok }
+      format.json { render json: { invoices: @invoices }, status: :ok }
       format.html
     end
   end
@@ -16,7 +16,7 @@ class InvoicesController < ApplicationController
     begin
       @invoice = Invoice.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :invoice => @invoice }, status: :ok }
+        format.json { render json: { invoice: @invoice }, status: :ok }
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -28,7 +28,7 @@ class InvoicesController < ApplicationController
     begin
       @invoice = Invoice.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :invoice => @invoice }, status: :ok }
+        format.json { render json: { invoice: @invoice }, status: :ok }
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -40,12 +40,12 @@ class InvoicesController < ApplicationController
   	@invoice = Invoice.new(invoice_params)
     if @invoice.save
       respond_to do |format|
-        format.json { render :json => { :invoice => @invoice }, status: :ok }
+        format.json { render json: { invoice: @invoice }, status: :ok }
         format.html { redirect_to invoices_path }
       end
     else
       respond_to do |format|
-        format.json { render :json => { :invoice => @invoice.errors }, status: :unprocessable_entity }
+        format.json { render json: { invoice: @invoice.errors }, status: :unprocessable_entity }
         format.html { redirect_to new_invoice_path }
       end
     end
@@ -58,7 +58,7 @@ class InvoicesController < ApplicationController
         redirect_to @invoice
       else
         respond_to do |format|
-          format.json { render :json => { :invoice => @invoice.errors }, status: :unprocessable_entity }
+          format.json { render json: { invoice: @invoice.errors }, status: :unprocessable_entity }
           format.html { redirect_to edit_invoice_path }
         end
       end
@@ -72,12 +72,12 @@ class InvoicesController < ApplicationController
       @invoice = Invoice.find(params[:id])
       if @invoice.destroy
         respond_to do |format|
-          format.json { render :json => { :message => 'Invoice was deleted successfully' }, status: :ok }
+          format.json { render json: { message: 'Invoice was deleted successfully' }, status: :ok }
           format.html { redirect_to invoices_path }
         end
       else
         respond_to do |format|
-          format.json { render :json => { :invoice => @invoice.errors }, status: :unprocessable_entity }
+          format.json { render json: { invoice: @invoice.errors }, status: :unprocessable_entity }
           format.html
         end
       end

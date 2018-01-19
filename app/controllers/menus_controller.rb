@@ -3,7 +3,7 @@ class MenusController < ApplicationController
   def index
     @menus = Menu.all
     respond_to do |format|
-      format.json { render :json => { :menus => @menus }, status: :ok }
+      format.json { render json: { menus: @menus }, status: :ok }
       format.html
     end
   end
@@ -16,7 +16,7 @@ class MenusController < ApplicationController
     begin
       @menu = Menu.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :menu => @menu }, status: :ok }
+        format.json { render json: { menu: @menu }, status: :ok }
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -28,7 +28,7 @@ class MenusController < ApplicationController
     begin
       @menu = Menu.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :menu => @menu }, status: :ok }
+        format.json { render json: { menu: @menu }, status: :ok }
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -40,12 +40,12 @@ class MenusController < ApplicationController
   	@menu = Menu.new(menu_params)
     if @menu.save
       respond_to do |format|
-        format.json { render :json => { :menu => @menu }, status: :ok }
+        format.json { render json: { menu: @menu }, status: :ok }
         format.html { redirect_to menus_path }
       end
     else
       respond_to do |format|
-        format.json { render :json => { :menu => @menu.errors }, status: :unprocessable_entity }
+        format.json { render json: { menu: @menu.errors }, status: :unprocessable_entity }
         format.html { redirect_to new_menu_path }
       end
     end
@@ -58,7 +58,7 @@ class MenusController < ApplicationController
         redirect_to @menu
       else
         respond_to do |format|
-          format.json { render :json => { :menu => @menu.errors }, status: :unprocessable_entity }
+          format.json { render json: { menu: @menu.errors }, status: :unprocessable_entity }
           format.html { redirect_to edit_menu_path }
         end
       end
@@ -72,12 +72,12 @@ class MenusController < ApplicationController
       @menu = Menu.find(params[:id])
       if @menu.destroy
         respond_to do |format|
-          format.json { render :json => { :message => 'Menu was deleted successfully' }, status: :ok }
+          format.json { render json: { message: 'Menu was deleted successfully' }, status: :ok }
           format.html { redirect_to menus_path }
         end
       else
         respond_to do |format|
-          format.json { render :json => { :menu => @menu.errors }, status: :unprocessable_entity }
+          format.json { render json: { menu: @menu.errors }, status: :unprocessable_entity }
           format.html
         end
       end

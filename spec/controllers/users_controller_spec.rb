@@ -30,7 +30,7 @@ RSpec.describe UsersController, type: :controller do
       it 'should not show invalid user' do
         restaurant = FactoryGirl.create(:restaurant)
         FactoryGirl.create(:user, restaurant_id: restaurant.id)
-        get :show, id:500, format: :json
+        get :show, id: 500, format: :json
         response.should have_http_status(:unprocessable_entity)
       end
       it 'should not show invalid attribute' do
@@ -55,7 +55,7 @@ RSpec.describe UsersController, type: :controller do
       it 'should not edit invalid user' do
         restaurant = FactoryGirl.create(:restaurant)
         FactoryGirl.create(:user, restaurant_id: restaurant.id)
-        get :edit, id:500, format: :json
+        get :edit, id: 500, format: :json
         response.should have_http_status(:not_found)
       end
     end

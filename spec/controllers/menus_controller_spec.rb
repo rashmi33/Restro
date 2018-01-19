@@ -65,12 +65,12 @@ RSpec.describe MenusController, type: :controller do
     context 'positive test' do
       it 'should create a valid menu with all attributes' do 
         restaurant = FactoryGirl.create(:restaurant)
-        post :create, menu: { menu_type: 'Indian', name: Faker::Food.dish, price: Faker::Number.decimal(5,2), restaurant_id: restaurant.id}, format: :json
+        post :create, menu: { menu_type: 'Indian', name: Faker::Food.dish, price: Faker::Number.decimal(5,2), restaurant_id: restaurant.id }, format: :json
         response.should have_http_status(:ok)
       end
       it 'should create a valid menu with manadatory attributes only' do 
         restaurant = FactoryGirl.create(:restaurant)
-        post :create, menu: { name: Faker::Food.dish, price: Faker::Number.decimal(5,2), restaurant_id: restaurant.id}, format: :json
+        post :create, menu: { name: Faker::Food.dish, price: Faker::Number.decimal(5,2), restaurant_id: restaurant.id }, format: :json
         response.should have_http_status(:ok)
       end
     end
@@ -102,7 +102,7 @@ RSpec.describe MenusController, type: :controller do
       it 'should not update menu with invalid id' do
         restaurant = FactoryGirl.create(:restaurant)
         FactoryGirl.create(:menu, restaurant_id: restaurant.id)
-        put :update, { id:511 }, menu: { name: 'ABC' }, format: :json
+        put :update, { id: 511 }, menu: { name: 'ABC' }, format: :json
         response.should have_http_status(:not_found)
       end
       it 'should not update menu with invalid attributes' do
@@ -127,7 +127,7 @@ RSpec.describe MenusController, type: :controller do
       it 'should not delete a menu with invalid id' do
         restaurant = FactoryGirl.create(:restaurant)
         FactoryGirl.create(:menu, restaurant_id: restaurant.id)
-        delete :destroy, id:555, format: :json
+        delete :destroy, id: 555, format: :json
         response.should have_http_status(:not_found)
       end
     end

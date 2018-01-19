@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
     respond_to do |format|
-      format.json { render :json => { :orders => @orders }, status: :ok }
+      format.json { render json: { orders: @orders }, status: :ok }
       format.html
     end
   end
@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     begin
       @order = Order.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :order => @order }, status: :ok }
+        format.json { render json: { order: @order }, status: :ok }
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
     begin
       @order = Order.find(params[:id])
       respond_to do |format|
-        format.json { render :json => { :order => @order }, status: :ok }
+        format.json { render json: { order: @order }, status: :ok }
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
@@ -40,12 +40,12 @@ class OrdersController < ApplicationController
   	@order = Order.new(order_params)
     if @order.save
       respond_to do |format|
-        format.json { render :json => { :order => @order }, status: :ok }
+        format.json { render json: { order: @order }, status: :ok }
         format.html { redirect_to orders_path }
       end
     else
       respond_to do |format|
-        format.json { render :json => { :order => @order.errors }, status: :unprocessable_entity }
+        format.json { render json: { order: @order.errors }, status: :unprocessable_entity }
         format.html { redirect_to new_order_path }
       end
     end
@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
         redirect_to @order
       else
         respond_to do |format|
-          format.json { render :json => { :order => @order.errors }, status: :unprocessable_entity }
+          format.json { render json: { order: @order.errors }, status: :unprocessable_entity }
           format.html { redirect_to edit_order_path }
         end
       end
@@ -72,12 +72,12 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
       if @order.destroy
         respond_to do |format|
-          format.json { render :json => { :message => 'Order was deleted successfully' }, status: :ok }
+          format.json { render json: { message: 'Order was deleted successfully' }, status: :ok }
           format.html { redirect_to orders_path }
         end
       else
         respond_to do |format|
-          format.json { render :json => { :order => @order.errors }, status: :unprocessable_entity }
+          format.json { render json: { order: @order.errors }, status: :unprocessable_entity }
           format.html
         end
       end

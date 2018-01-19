@@ -65,20 +65,20 @@ RSpec.describe InvoicesController, type: :controller do
     context 'positive test' do
       it 'should create a valid invoice with all attributes' do 
         order = FactoryGirl.create(:order)
-        post :create, invoice: { code: 'A7878A', amount: Faker::Number.decimal(5, 2),order_id: order.id }, format: :json
+        post :create, invoice: { code: 'A7878A', amount: Faker::Number.decimal(5, 2), order_id: order.id }, format: :json
         response.should have_http_status(:ok)
       end
     end
     context 'negative test' do
       it 'should not create a invoice with invalid attributes' do
         order = FactoryGirl.create(:order)
-        invoice = FactoryGirl.create(:invoice, order_id: order.id)
+        FactoryGirl.create(:invoice, order_id: order.id)
         post :create, invoice: { code: 'AA5561' }, format: :json
         response.should have_http_status(:unprocessable_entity)
       end
       it 'should not create a invoice with nil values' do
         order= FactoryGirl.create(:order)
-        invoice = FactoryGirl.create(:invoice, order_id: order.id)
+        FactoryGirl.create(:invoice, order_id: order.id)
         post :create, invoice: { code: nil }, format: :json
         response.should have_http_status(:unprocessable_entity)
       end
@@ -98,7 +98,7 @@ RSpec.describe InvoicesController, type: :controller do
       it 'should not update invoice with invalid id' do
         order = FactoryGirl.create(:order)
         FactoryGirl.create(:invoice, order_id: order.id)
-        put :update, { id:511 }, invoice: { name: 'ABC' }, format: :json
+        put :update, { id: 511 }, invoice: { name: 'ABC' }, format: :json
         response.should have_http_status(:not_found)
       end
       it 'should not update invoice with invalid attributes' do

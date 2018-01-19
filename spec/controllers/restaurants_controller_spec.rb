@@ -58,11 +58,11 @@ RSpec.describe RestaurantsController, type: :controller do
   context 'POST #create' do
     context 'positive test' do
       it 'should create a valid restaurant with all attributes' do 
-        post :create, restaurant: { name: Faker::Name.first_name, address: Faker::Address.street_address, city: Faker::Address.city, phone_no: Faker::Number.number(17), rating: Faker::Number.number(1), is_veg: 'true', has_bar: 'false'}, format: :json
+        post :create, restaurant: { name: Faker::Name.first_name, address: Faker::Address.street_address, city: Faker::Address.city, phone_no: Faker::Number.number(17), rating: Faker::Number.number(1), is_veg: 'true', has_bar: 'false' }, format: :json
         response.should have_http_status(:ok)
       end
       it 'should create a valid restaurant with manadatory attributes only' do 
-        post :create, restaurant: { name: Faker::Name.first_name, address: Faker::Address.street_address, city: Faker::Address.city, phone_no: Faker::Number.number(17)}, format: :json
+        post :create, restaurant: { name: Faker::Name.first_name, address: Faker::Address.street_address, city: Faker::Address.city, phone_no: Faker::Number.number(17) }, format: :json
         response.should have_http_status(:ok)
       end
     end
@@ -84,7 +84,7 @@ RSpec.describe RestaurantsController, type: :controller do
     context 'positive test' do
       it 'should update the restaurant with valid attributes' do
         restaurant = FactoryGirl.create(:restaurant)
-        put :update ,id: restaurant.id, restaurant: { name: restaurant.name, address: restaurant.address, city: restaurant.city, phone_no: restaurant.phone_no, rating: restaurant.rating, is_veg: restaurant.is_veg, has_bar: restaurant.has_bar }
+        put :update, id: restaurant.id, restaurant: { name: restaurant.name, address: restaurant.address, city: restaurant.city, phone_no: restaurant.phone_no, rating: restaurant.rating, is_veg: restaurant.is_veg, has_bar: restaurant.has_bar }
         expect(response).to redirect_to restaurant_path(restaurant.id)
       end
     end
