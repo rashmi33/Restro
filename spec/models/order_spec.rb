@@ -32,26 +32,26 @@ RSpec.describe Order, type: :model do
       FactoryGirl.build(:order, food_details_with_quantity: nil).should_not be_valid
     end
   end
+  
+  before :each do
+    restaurant = FactoryGirl.create(:restaurant)
+    @menu = FactoryGirl.create(:menu, restaurant_id: restaurant.id)
+    @user = FactoryGirl.create(:user, restaurant_id: restaurant.id)
+    @order = FactoryGirl.create(:order, menu_id: @menu.id, user_id: @user.id)
+  end
 
   context 'associations' do
     it 'should have one invoice' do
-      order = FactoryGirl.create(:order)
-      invoice = FactoryGirl.create(:invoice, order_id: order.id)
-      order.invoice.id.should eq invoice.id
+      invoice = FactoryGirl.create(:invoice, order_id: @order.id)
+      @order.invoice.id.should eq invoice.id
     end
 
     it 'should belong to menu' do
-      menu = FactoryGirl.create(:menu)
-      user = FactoryGirl.create(:user)
-      order = FactoryGirl.create(:order, menu_id: menu.id, user_id: user.id)
-      order.menu.id.should eq menu.id
+      @order.menu.id.should eq @menu.id
     end
 
     it 'should belong to user' do
-      menu = FactoryGirl.create(:menu)
-      user = FactoryGirl.create(:user)
-      order = FactoryGirl.create(:order, menu_id: menu.id, user_id: user.id)
-      order.user.id.should eq user.id
+      @order.user.id.should eq @user.id
     end
   end
 end

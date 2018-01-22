@@ -39,7 +39,8 @@ RSpec.describe User, type: :model do
 
   context 'associations' do
     it 'should have many orders'do
-      user = FactoryGirl.create(:user)
+      restaurant = FactoryGirl.create(:restaurant)
+      user = FactoryGirl.create(:user, restaurant_id: restaurant.id)
       order = FactoryGirl.create(:order, user_id: user.id)
       user.orders.includes(order)
     end
